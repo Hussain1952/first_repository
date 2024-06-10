@@ -1,6 +1,11 @@
 name: Jira Automation
 
-on: [workflow_dispatch]
+on:
+  workflow_dispatch:
+    inputs:
+      user_name:
+        description: 'Person running the test'
+        required: true
 
 jobs:
   run-automation:
@@ -10,13 +15,9 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Prompt for User Input
-      id: user_input
-      run: echo "::set-output name=user_name::$(read -p 'Enter your name: ' username; echo $username)"
-      env:
-        JIRA_API_KEY: ${{ secrets.JIRA_API_KEY }}
-      
-    - name: Use Jira API Key
+    - name: Use Jira API Key and User Input
       run: |
         echo "Using Jira API Key: ${{ secrets.JIRA_API_KEY }}"
-        echo "Running test as: ${{ steps.user_input.outputs.user_name }}"
+        echo "Running test as: ${{ github.event.inputs.user_name }}"
+      env:
+        JIRA_API_KEY: ${{ secrets.JIRA_API_KEY }}
