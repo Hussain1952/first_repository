@@ -1,4 +1,4 @@
-name: Automation by jira
+name: Jira Automation
 
 on:
   workflow_dispatch:
