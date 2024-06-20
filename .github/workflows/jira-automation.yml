@@ -20,4 +20,4 @@ jobs:
         curl -u hussain:$JIRA_API_KEY -X POST \
           -H "Content-Type: application/json" \
           -d '{"fields": {"project": {"key": "'"$PROJECT_KEY"'"},"summary": "Automated Test Execution","description": "Results from automated tests","issuetype": {"name": "Test Execution"},"labels":["automated"],"customfield_10200": "'"$CYCLE_ID"'"}' \
-    
+          $JIRA_URL/rest/api/2/issue/    
