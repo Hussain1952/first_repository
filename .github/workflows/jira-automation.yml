@@ -32,7 +32,7 @@ jobs:
       run: |
         PROJECT_KEY="HP"
         CYCLE_ID="HP-TR-61"
-        BASE_URL="https://qtmcloud.qmetry.com/rest/api/automation/importresult"
+        BASE_URL="https://hussain-qmetry.atlassian.net/"
 
         # Sample test result content
         echo "Test Suite: Sample Test Suite
