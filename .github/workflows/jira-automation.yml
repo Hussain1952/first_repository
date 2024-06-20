@@ -26,6 +26,9 @@ jobs:
     - name: Install QMetry CLI
       run: npm install -g qtm4j-cli
 
+    - name: Debug Info
+      run: set -x
+
     - name: Publish Test Results to QMetry
       env:
         QTM4J_API_KEY: ${{ secrets.JIRA_API_KEY }}  # Keeping the API key secret for security reasons
