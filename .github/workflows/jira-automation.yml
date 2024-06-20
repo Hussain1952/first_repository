@@ -27,7 +27,7 @@ jobs:
         
         
         # Example using curl to create a Jira issue (modify as needed to import results)
-        curl -u $JIRA_API_KEY -X POST -H "Content-Type: application/json" \
+        curl apiKey:$JIRA_API_KEY -X POST -H "Content-Type: application/json" \
         --data '{
           "fields": {
             "project": {
