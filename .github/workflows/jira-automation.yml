@@ -22,7 +22,7 @@ jobs:
         JIRA_API_KEY: ${{ secrets.JIRA_API_KEY }}  # Still using secrets for the API token
       run: |
         JIRA_USERNAME="hussishd786@gmail.com"
-        JIRA_PROJECT_KEY=10000
+        JIRA_PROJECT_KEY=HP
         JIRA_SITE="https://hussain-qmetry.atlassian.net"
         
         
