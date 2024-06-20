@@ -23,7 +23,7 @@ jobs:
       run: |
         JIRA_USERNAME="hussishd786@gmail.com"
         JIRA_PROJECT_KEY=10000
-        JIRA_SITE="https://qtmcloud.qmetry.com"
+        JIRA_SITE="https://hussain-qmetry.atlassian.net"
         
         AUTH=$(echo -n $JIRA_USERNAME:$JIRA_API_TOKEN | base64)
         
