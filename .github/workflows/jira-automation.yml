@@ -36,7 +36,7 @@ jobs:
             "summary": "Automated Test Results",
             "description": "Test results imported from GitHub Actions. All tests passed successfully.",
             "issuetype": {
-              "name": "Test Cycle"
+              "name": "Story"
             }
           }
         }' $JIRA_SITE/rest/api/2/issue/
