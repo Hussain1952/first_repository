@@ -32,7 +32,7 @@ jobs:
         --data '{
           "fields": {
             "project": {
-              "key": "$JIRA_PROJECT_KEY"
+              "key": "'"$JIRA_PROJECT_KEY"'"
             },
             "summary": "Automated Test Results",
             "description": "Test results imported from GitHub Actions. All tests passed successfully.",
