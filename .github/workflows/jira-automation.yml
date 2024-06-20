@@ -10,42 +10,15 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Install QMetry CLI
-      run: npm install -g qtm4j-cli
-
-    - name: Debug Info
-      run: set -x
-
     - name: Publish Test Results to QMetry
       env:
-        QTM4J_API_KEY: ${{ secrets.JIRA_API_KEY }}  # Keeping the API key secret for security reasons
+        QM4J_API_KEY: ${{ secrets.JIRA_API_KEY }}
+        JIRA_URL: "https://qtmcloud.qmetry.com"
+        PROJECT_KEY: "HP"
+        CYCLE_ID: "HP-TR-61"
       run: |
-        PROJECT_KEY="HP"
-        CYCLE_ID="HP-TR-61"
-        BASE_URL="https://qtmcloud.qmetry.com/rest/api/automation/importresult"
-
-        # Sample test result content
-        echo "Test Suite: Sample Test Suite
-        ----------------------------
-        Test Case 1: Passed
-        Test Case 2: Passed
-        Test Case 3: Failed
-            - Error: Expected value was 42, but got 43
-        Test Case 4: Passed
-        ----------------------------
-        Summary:
-        Total Tests: 4
-        Passed: 3
-        Failed: 1
-        Skipped: 0
-        ----------------------------
-        Execution Time: 2m 35s
-        Executed By: Your Name" > test-result.txt
-
-        qtm4j-cli test-import \
-        --projectId $PROJECT_KEY \
-        --cycleId $CYCLE_ID \
-        --apiKey $JIRA_API_KEY \
-        --baseUrl $BASE_URL \
-        --filePath ./test-result.txt \
-        --format text
+        curl -X POST \
+          -H "Content-Type: application/json" \
+          -H "Authorization: Basic $(echo -n hussishd786@gmail.com:$QM4J_API_KEY | base64)" \
+          -d '{"fields": {"project": {"key": "'"$PROJECT_KEY"'"},"summary": "Automated Test Execution","description": "Results from automated tests","issuetype": {"name": "Test Execution"},"labels":["automated"],"customfield_10200": "'"$CYCLE_ID"'"}' \
+          $JIRA_URL/rest/api/automation/importresult
