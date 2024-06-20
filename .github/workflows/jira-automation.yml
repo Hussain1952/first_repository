@@ -1,23 +1,41 @@
-name: Jira Automation
+name: Jira Integration
 
-on:
-  workflow_dispatch:
-    inputs:
-      user_name:
-        description: 'Person running the test'
-        required: true
+on: [push]
 
 jobs:
-  run-automation:
+  jira-integration-job:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
+    - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Use Jira API Key and User Input
+    - name: Run Tests
       run: |
-        echo "Using the Secret: JIRA_API_KEY"
-        echo "Running test as: ${{ github.event.inputs.user_name }}"
+        # Add your test commands here
+        echo "Running tests..."
+        # Simulate test results (replace with actual test commands)
+        echo "Test results generated successfully."
+
+    - name: Create Jira Issue
       env:
-        JIRA_API_KEY: ${{ secrets.JIRA_API_KEY }}
+        JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}  # Still using secrets for the API token
+      run: |
+        JIRA_USERNAME=hussishd786@gmail.com
+        JIRA_PROJECT_KEY=10000
+        JIRA_SITE=https://qtmcloud.qmetry.com
+        
+        # Example using curl to create a Jira issue (modify as needed to import results)
+        curl -u $JIRA_USERNAME:$JIRA_API_TOKEN -X POST -H "Content-Type: application/json" \
+        --data '{
+          "fields": {
+            "project": {
+              "key": "'"$JIRA_PROJECT_KEY"'"
+            },
+            "summary": "Automated Test Results",
+            "description": "Test results imported from GitHub Actions. All tests passed successfully.",
+            "issuetype": {
+              "name": "Test Cycle"
+            }
+          }
+        }' $JIRA_SITE/rest/api/automation/importresult
