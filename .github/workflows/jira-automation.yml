@@ -26,7 +26,7 @@ jobs:
         JIRA_SITE="https://qtmcloud.qmetry.com"
         
         # Example using curl to create a Jira issue (modify as needed to import results)
-        curl -u $JIRA_USERNAME:$JIRA_API_KEY -X PUT -H "Content-Type:multipart/form-data" \
+        curl -u $JIRA_USERNAME:$JIRA_API_KEY -X POST -H "Content-Type :application/json" \
         --data '{
           "fields": {
             "project": {
