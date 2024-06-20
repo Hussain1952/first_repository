@@ -27,7 +27,7 @@ jobs:
       run: npm install -g qtm4j-cli
 
     - name: Publish Test Results to QMetry
-       env:
+      env:
         QTM4J_API_KEY: ${{ secrets.JIRA_API_KEY }}  # Keeping the API key secret for security reasons
       run: |
         PROJECT_KEY="HP"
