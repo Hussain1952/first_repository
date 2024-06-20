@@ -39,5 +39,5 @@ jobs:
         --cycleId $CYCLE_ID \
         --apiKey $JIRA_API_KEY \
         --baseUrl $BASE_URL \
-        --filePath ./test-results.json \
+        --filePath ./test-result.json \
         --format cucumber-json
