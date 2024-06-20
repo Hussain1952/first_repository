@@ -21,13 +21,13 @@ jobs:
       env:
         JIRA_API_KEY: ${{ secrets.JIRA_API_KEY }}  # Still using secrets for the API token
       run: |
-        # JIRA_USERNAME="hussishd786@gmail.com"
+        JIRA_USERNAME="hussishd786@gmail.com"
         JIRA_PROJECT_KEY=HP
         JIRA_SITE="https://qtmcloud.qmetry.com"
         
         
         # Example using curl to create a Jira issue (modify as needed to import results)
-        curl apiKey:$JIRA_API_KEY -X POST -H "Content-Type: application/json" \
+        curl -u $JIRA_USERNAME:$JIRA_API_KEY -X POST -H "Content-Type: application/json" \
         --data '{
           "fields": {
             "project": {
