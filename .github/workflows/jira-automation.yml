@@ -39,4 +39,4 @@ jobs:
               "name": "Test Cycle"
             }
           }
-        }' $JIRA_SITE/qtmcloud.qmetry.com/rest/api/automation/importresult
+        }' $JIRA_SITE/rest/api/automation/importresult
