@@ -34,10 +34,28 @@ jobs:
         CYCLE_ID="HP-TR-61"
         BASE_URL="https://qtmcloud.qmetry.com/rest/api/automation/importresult"
 
+        # Sample test result content
+        echo "Test Suite: Sample Test Suite
+        ----------------------------
+        Test Case 1: Passed
+        Test Case 2: Passed
+        Test Case 3: Failed
+            - Error: Expected value was 42, but got 43
+        Test Case 4: Passed
+        ----------------------------
+        Summary:
+        Total Tests: 4
+        Passed: 3
+        Failed: 1
+        Skipped: 0
+        ----------------------------
+        Execution Time: 2m 35s
+        Executed By: Your Name" > test-result.txt
+
         qtm4j-cli test-import \
         --projectId $PROJECT_KEY \
         --cycleId $CYCLE_ID \
         --apiKey $JIRA_API_KEY \
         --baseUrl $BASE_URL \
-        --filePath ./test-result.json \
-        --format cucumber-json
+        --filePath ./test-result.txt \
+        --format text
