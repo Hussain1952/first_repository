@@ -17,8 +17,7 @@ jobs:
         PROJECT_KEY: "HP"
         CYCLE_ID: "HP-TR-61"
       run: |
-        curl -X POST \
+        curl -u hussishd786@gmail.com:$JIRA_API_KEY -X POST \
           -H "Content-Type: application/json" \
-          -H "Authorization: Basic $(echo -n hussishd786@gmail.com:$QM4J_API_KEY | base64)" \
           -d '{"fields": {"project": {"key": "'"$PROJECT_KEY"'"},"summary": "Automated Test Execution","description": "Results from automated tests","issuetype": {"name": "Test Execution"},"labels":["automated"],"customfield_10200": "'"$CYCLE_ID"'"}' \
           $JIRA_URL/rest/api/automation/importresult
