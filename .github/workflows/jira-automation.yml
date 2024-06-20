@@ -20,5 +20,5 @@ jobs:
         curl -X POST \
           -H "apiKey:${QM4J_API_KEY}" \
           -H "Content-Type: application/json" \
-          -d '{"fields": {"project": {"key": "'"$PROJECT_KEY"'"},"summary": "Automated Test Execution","description": "Results from automated tests","issuetype": {"name": "Test Execution"},"labels":["automated"]}' \
+          -d '{"format":"cucumber","testCycleToReuse":"TR-PRJ-1"}' \
           $JIRA_URL
