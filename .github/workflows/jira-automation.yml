@@ -25,7 +25,7 @@ jobs:
         JIRA_PROJECT_KEY=10000
         JIRA_SITE="https://qtmcloud.qmetry.com"
         
-        AUTH=$(echo -n $JIRA_USERNAME:$JIRA_API_TOKEN | base64)
+        AUTH=$(echo -n $JIRA_USERNAME:$JIRA_API_KEY | base64)
         
         # Example using curl to create a Jira issue (modify as needed to import results)
         curl -X POST -H "Authorization: Basic $AUTH" -H "Content-Type: application/json" \
