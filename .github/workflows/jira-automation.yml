@@ -23,7 +23,7 @@ jobs:
       run: |
         JIRA_USERNAME="hussishd786@gmail.com"
         JIRA_PROJECT_KEY=10000
-        JIRA_SITE="https://qtmcloud.qmetry.com"
+        JIRA_SITE="https://hussain-qmetry.atlassian.net"
         
         AUTH=$(echo -n $JIRA_USERNAME:$JIRA_API_KEY | base64)
         
@@ -37,7 +37,7 @@ jobs:
             "summary": "Automated Test Results",
             "description": "Test results imported from GitHub Actions. All tests passed successfully.",
             "issuetype": {
-              "name": "Test Cycle"
+              "name": "Task"
             }
           }
-        }' $JIRA_SITE/rest/api/automation/importresult
+        }' $JIRA_SITE/rest/api/2/issue/
