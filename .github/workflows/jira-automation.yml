@@ -28,7 +28,7 @@ jobs:
         AUTH=$(echo -n $JIRA_USERNAME:$JIRA_API_KEY | base64)
         
         # Example using curl to create a Jira issue (modify as needed to import results)
-        curl -X POST -H "Authorization: Basic $AUTH" -H "Content-Type: application/json" \
+        curl ---http1.1 -X POST -H "Authorization: Basic $AUTH" -H "Content-Type: application/json" \
         --data '{
           "fields": {
             "project": {
