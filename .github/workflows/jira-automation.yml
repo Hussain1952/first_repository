@@ -12,13 +12,13 @@ jobs:
 
     - name: Publish Test Results to QMetry
       env:
-        QM4J_API_KEY: ${{ secrets.JIRA_API_KEY }}
+        QM4J_API_KEY: 04dae3557119eb98153280b729dc3f68a822d6bbdc019a38a168edb0aca03f65a52f3ac5119bc2dfff2e87ac378712e4614bdac44c9b976967ac4421b36c14a7842f7114a3e51140a1bbc9392610ff71
         JIRA_URL: "https://qtmcloud.qmetry.com/rest/api/automation/importresult"
         PROJECT_KEY: "HP"
         CYCLE_ID: "HP-TR-61"
       run: |
         curl -X POST \
-          -H "apiKey:${JIRA_API_KEY}" \
+          -H "apiKey:${QM4J_API_KEY}" \
           -H "Content-Type: application/json" \
           -d '{"fields": {"project": {"key": "'"$PROJECT_KEY"'"},"summary": "Automated Test Execution","description": "Results from automated tests","issuetype": {"name": "Test Execution"},"labels":["automated"]}' \
           $JIRA_URL
