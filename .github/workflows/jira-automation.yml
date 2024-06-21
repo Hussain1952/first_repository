@@ -12,7 +12,7 @@ jobs:
 
     - name: Publish Test Results to QMetry
       env:
-        QTM4J_API_KEY: ${{ secrets.QTM4J_AUTOMATION_API_KEY }} 
+        QTM4J_API_KEY: ${{ secrets.QTM4J_AUTOMATION_API_KEY}} 
         JIRA_URL: "https://qtmcloud.qmetry.com/rest/api/automation/importresult"
       run: |
         curl -X POST \
