@@ -18,7 +18,7 @@ jobs:
         CYCLE_ID: "HP-TR-61"
       run: |
         curl -X POST \
-          -H "apiKey:${QTM4J_AUTOMATION_API_KEY}" \
+          -H "apiKey:${QTM4J_API_KEY}" \
           -H "Content-Type: application/json" \
           -d '{"format":"cucumber","testCycleToReuse":"HP-TR-61"}' \
           $JIRA_URL
