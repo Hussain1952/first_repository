@@ -14,8 +14,6 @@ jobs:
       env:
         QTM4J_API_KEY: ${{ secrets.QTM4J_AUTOMATION_API_KEY }} 
         JIRA_URL: "https://qtmcloud.qmetry.com/rest/api/automation/importresult"
-        PROJECT_KEY: "HP"
-        CYCLE_ID: "HP-TR-61"
       run: |
         curl -X POST \
           -H "apiKey:${QTM4J_API_KEY}" \
