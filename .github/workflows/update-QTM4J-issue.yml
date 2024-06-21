@@ -3,7 +3,6 @@ name: Update Jira Issue with Attachment
 on:
   push:
     branches:
-      - main
 
 jobs:
   update-issue:
