@@ -20,5 +20,5 @@ jobs:
         curl -X POST \
           -H "apiKey:${QTM4J_API_KEY}" \
           -H "Content-Type: application/json" \
-          -d '{"format":"cucumber","testCycleToReuse":"HP-TR-61"}' \
+          -d '{"format":"cucumber"}' \
           $JIRA_URL
