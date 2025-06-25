@@ -10,7 +10,7 @@ jobs:
     env:
       QTM4J_API_KEY_HUSSAINAGAIN: ${{ secrets.QTM4J_API_KEY_HUSSAINAGAIN }}
       QTM4J_BASE_URL: ${{ secrets.QTM4J_BASE_URL }}     # e.g. https://jira.example.com
-      RESULT_FILE: C:\Users\hussain.rassiwala\Downloads\JUnit.xml                      # ✅ Path to your local XML file
+      RESULT_FILE: ./JUnit.xml                      # ✅ Path to your local XML file
 
     steps:
       - name: Checkout repo
