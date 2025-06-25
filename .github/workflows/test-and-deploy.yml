@@ -47,6 +47,9 @@ jobs:
       # Step 2: Upload local XML file using PUT with multipart/form-data
       - name: Upload XML file to QMetry (S3 presigned PUT)
         run: |
+          echo "Uploading: ${RESULT_FILE}"
+          ls -l "${RESULT_FILE}"
+
           curl --fail -X PUT \
              --upload-file "${RESULT_FILE}" \
              "${{ steps.presign.outputs.upload_url }}"
