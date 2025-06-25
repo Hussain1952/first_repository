@@ -51,5 +51,6 @@ jobs:
           ls -l "${RESULT_FILE}"
 
           curl --fail -X PUT \
-             --upload-file "${RESULT_FILE}" \
+             -H "Content-Type: multipart/form-data" \
+             --data-binary "@${RESULT_FILE}" \
              "${{ steps.presign.outputs.upload_url }}"
