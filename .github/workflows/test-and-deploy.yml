@@ -45,8 +45,8 @@ jobs:
           echo "tracking_id=$(jq -r '.trackingId' response.json)" >> "$GITHUB_OUTPUT"
 
       # Step 2: Upload local XML file using PUT with multipart/form-data
-      - name: Upload test result file
+      - name: Upload XML file to QMetry (S3 presigned PUT)
         run: |
-          curl -X PUT \
-               -F "file=@${RESULT_FILE}" \
-               "${{ steps.presign.outputs.upload_url }}"
+          curl --fail -X PUT \
+             --upload-file "${RESULT_FILE}" \
+             "${{ steps.presign.outputs.upload_url }}"
