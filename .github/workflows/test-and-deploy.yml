@@ -38,6 +38,7 @@ jobs:
             -d @payload.json \
             "$QTM4J_BASE_URL/rest/api/automation/importresult" \
             -o response.json
+          type response.json
 
           echo "upload_url=$(jq -r '.url' response.json)" >> "$GITHUB_OUTPUT"
           echo "tracking_id=$(jq -r '.trackingId' response.json)" >> "$GITHUB_OUTPUT"
