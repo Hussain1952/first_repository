@@ -39,11 +39,15 @@ jobs:
             "$QTM4J_BASE_URL/rest/api/automation/importresult" \
             -o response.json
 
-          echo "upload_url=$(jq -r '.url' response.json)" >> "$GITHUB_OUTPUT"
-          echo "tracking_id=$(jq -r '.trackingId' response.json)" >> "$GITHUB_OUTPUT"
+          echo "Presign response:" && cat response.json
+          UPLOAD_URL=$(jq -r '.url // empty' response.json)
 
-      # Step 2: Upload local XML file using PUT with multipart/form-data
-      - name: Upload test result file
+          if [ -z "$UPLOAD_URL" ]; then
+              echo "::error::Presign failed – no upload URL"; exit 1
+          fi
+          echo "upload_url=$UPLOAD_URL" >> "$GITHUB_OUTPUT"
+
+      - name: Step 2 – Upload XML (PUT multipart)
         run: |
           curl -X PUT \
                -F "file=@${RESULT_FILE}" \
