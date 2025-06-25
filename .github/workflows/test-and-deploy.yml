@@ -1,0 +1,67 @@
+name: Playwright → QMetry upload
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  upload-to-qmetry:
+    runs-on: ubuntu-latest
+
+    # Store credentials in GitHub → Settings → Secrets and variables → Actions
+    env:
+      QTM4J_BASE_URL:  ${{ secrets.QTM4J_BASE_URL }}   # e.g. https://jira.example.com
+      QTM4J_API_KEY_HUSSAINAGAIN:   ${{ secrets.QTM4J_API_KEY_HUSSAINAGAIN }}    # project-scoped API key
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Run Playwright and generate JUnit
+        run: |
+          npm ci
+          npx playwright install --with-deps
+          npx playwright test --reporter=junit
+          # JUnit lands at results.xml by default
+          ls -lh results.xml
+
+      # ----------------------------------------------------
+      # ① Ask QMetry for a presigned upload URL
+      # ----------------------------------------------------
+      - name: Get QMetry upload URL
+        id: presign
+        run: |
+          cat >payload.json <<EOF
+          {
+            "format": "JUNIT",
+            "environment": "Staging",
+            "build": "${{ github.run_number }}",
+            "isZip": false,
+            "fields": {
+              "testCase": {
+                "status": "In Progress"
+              }
+            }
+          }
+          EOF
+
+          curl -s -X POST \
+               -H "Content-Type: application/json" \
+               -H "apiKey: $QTM4J_API_KEY_HUSSAINAGAIN" \
+               --data @payload.json \
+               "$QTM4J_BASE_URL/rest/api/automation/importresult" \
+               -o response.json
+
+          echo "upload_url=$(jq -r '.url' response.json)" >>"$GITHUB_OUTPUT"
+          echo "tracking_id=$(jq -r '.trackingId' response.json)" >>"$GITHUB_OUTPUT"
+
+      # ----------------------------------------------------
+      # ② Upload the JUnit XML to that URL
+      # ----------------------------------------------------
+      - name: Upload test result file to QMetry
+        env:
+          RESULT_FILE: C:\Users\hussain.rassiwala\Downloads\JUnit.xml  # path to your locally generated file
+        run: |
+          curl -X PUT \
+               -F "file=@${RESULT_FILE}" \
+               "${{ steps.presign.outputs.upload_url }}"
