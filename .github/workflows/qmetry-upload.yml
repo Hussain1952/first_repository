@@ -1,10 +1,10 @@
 name: Upload Test Result to QMetry
 
 on:
-  workflow_dispatch:  # Manual trigger
+  workflow_dispatch:  # Can be triggered manually or via API (QTM4J webhook)
     inputs:
-      test_cycle_key:
-        description: "Test Cycle Key from webhook or QTM4J"
+      testCycleId:
+        description: "QMetry Test Cycle ID from webhook or manual input"
         required: false  # optional in case manual trigger
 
 jobs:
@@ -20,21 +20,21 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      # Step 0: Debug - print received test cycle key
-      - name: "Debug: Print received test cycle key"
+      # Step 0: Debug - print received test cycle id
+      - name: "Debug: Print received test cycle id"
         run: |
-          echo "Received test cycle key from webhook: '${{ github.event.inputs.test_cycle_key }}'"
+          echo "Received test cycle id from webhook: '${{ github.event.inputs.testCycleId }}'"
 
-      # Step 1: Save test cycle key dynamically
-      - name: Save test cycle key
+      # Step 1: Save test cycle id dynamically
+      - name: Save test cycle id
         run: |
-          KEY="${{ github.event.inputs.test_cycle_key }}"
+          KEY="${{ github.event.inputs.testCycleId }}"
           if [ -z "$KEY" ]; then
-            echo "No test cycle key provided. Using default placeholder."
+            echo "No test cycle id provided. Using default placeholder."
             KEY="DEFAULT_TEST_CYCLE"
           fi
           echo "$KEY" > test_cycle_key.txt
-          echo "Test cycle key saved: $KEY"
+          echo "Test cycle id saved: $KEY"
 
       # Step 2: Debug - check saved file
       - name: Check test_cycle_key.txt
