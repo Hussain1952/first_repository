@@ -1,4 +1,4 @@
-name: Upload Local Test Result to QMetry
+name: Upload Test Result to QMetry
 
 on:
   workflow_dispatch:  # Manual trigger
