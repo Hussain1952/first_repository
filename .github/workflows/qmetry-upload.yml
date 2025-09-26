@@ -69,7 +69,7 @@ jobs:
             -u "${{ secrets.JIRA_USERNAME }}:${{ secrets.JIRA_PASSWORD }}" \
             -d @payload.json \
             "$QTM4J_BASE_URL/rest/qtm4j/automation/latest/importresult" \
-            -o response.json
+        
           echo "QMetry response:"
           echo "HTTP Status: $HTTP_STATUS"
           cat response.json
