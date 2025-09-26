@@ -62,13 +62,13 @@ jobs:
 
           echo "Payload being sent:"
           cat payload.json
-          HTTP_STATUS=$(curl -s -o response.json -w "%{http_code}" 
+          HTTP_STATUS=$(curl -s -o response.json -w "%{http_code}" \ 
             -X POST \
             -H "Content-Type: application/json" \
             -H "apiKey: $QTM4J_API_KEY_HUSSAINAGAIN" \
             -u "${{ secrets.JIRA_USERNAME }}:${{ secrets.JIRA_PASSWORD }}" \
             -d @payload.json \
-            "$QTM4J_BASE_URL/rest/qtm4j/automation/latest/importresult" \
+            "$QTM4J_BASE_URL/rest/qtm4j/automation/latest/importresult")
         
           echo "QMetry response:"
           echo "HTTP Status: $HTTP_STATUS"
