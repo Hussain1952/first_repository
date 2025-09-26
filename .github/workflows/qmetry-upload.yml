@@ -62,7 +62,7 @@ jobs:
 
           echo "Payload being sent:"
           cat payload.json
-
+          HTTP_STATUS=$(curl -s -o response.json -w "%{http_code}" \
           curl -s -X POST \
             -H "Content-Type: application/json" \
             -H "apiKey: $QTM4J_API_KEY_HUSSAINAGAIN" \
@@ -71,6 +71,7 @@ jobs:
             "$QTM4J_BASE_URL/rest/qtm4j/automation/latest/importresult" \
             -o response.json
           echo "QMetry response:"
+          echo "HTTP Status: $HTTP_STATUS"
           cat response.json
 
           echo "upload_url=$(jq -r '.url' response.json)" >> "$GITHUB_OUTPUT"
