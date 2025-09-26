@@ -68,7 +68,7 @@ jobs:
             -H "apiKey: $QTM4J_API_KEY_HUSSAINAGAIN" \
             -u "${{ secrets.JIRA_USERNAME }}:${{ secrets.JIRA_PASSWORD }}" \
             -d @payload.json \
-            "$QTM4J_BASE_URL/rest/api/automation/importresult" \
+            "$QTM4J_BASE_URL/rest/qtm4j/automation/latest/importresult" \
             -o response.json
           echo "QMetry response:"
           cat response.json
