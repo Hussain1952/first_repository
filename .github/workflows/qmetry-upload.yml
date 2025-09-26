@@ -62,7 +62,7 @@ jobs:
 
           echo "Payload being sent:"
           cat payload.json
-          HTTP_STATUS=$(curl -s -o response.json -w "%{http_code}" \
+          HTTP_STATUS=$(curl -s -o response.json -w "%{http_code}" 
             -X POST \
             -H "Content-Type: application/json" \
             -H "apiKey: $QTM4J_API_KEY_HUSSAINAGAIN" \
