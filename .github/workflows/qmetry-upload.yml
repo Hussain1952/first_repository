@@ -66,6 +66,7 @@ jobs:
           curl -s -X POST \
             -H "Content-Type: application/json" \
             -H "apiKey: $QTM4J_API_KEY_HUSSAINAGAIN" \
+            -u "${{ secrets.JIRA_USERNAME }}:${{ secrets.JIRA_PASSWORD }}" \
             -d @payload.json \
             "$QTM4J_BASE_URL/rest/api/automation/importresult" \
             -o response.json
