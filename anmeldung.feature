@@ -18,3 +18,4 @@ Funktionalität: Benutzeranmeldung
     Und der Benutzer das Login-Formular absendet
     Dann sollte eine Fehlermeldung angezeigt werden
     Und der Benutzer sollte auf der Login-Seite bleiben
+    Dann sollte das Dashboard angezeigt werden
